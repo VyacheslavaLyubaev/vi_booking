@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\DTO\CustomerDTO;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -41,6 +42,20 @@ class Customer
      * @ORM\Column(type="integer", length=6)
      */
     private $pn;
+
+    public function __construct(string $f, string $i, string $o, int $ps, int $pn)
+    {
+        $this->f = $f;
+        $this->i = $i;
+        $this->o = $o;
+        $this->ps = $ps;
+        $this->pn = $pn;
+    }
+
+    public function createFromDTO(CustomerDTO $dto): self
+    {
+        return new self($dto->getF(), $dto->getI(), $dto->getO(), $dto->getPs(), $dto->getPn());
+    }
 
     public function getId(): ?int
     {
