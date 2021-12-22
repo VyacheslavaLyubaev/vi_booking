@@ -43,6 +43,8 @@ class AddCustomerController extends AbstractController
             $customerEntity = Customer::createFromDTO($customerDto);
             $this->entityManager->persist($customerEntity);
             $this->entityManager->flush();
+
+            return $this->redirectToRoute('app.bookTicket');
         }
 
         return $this->render('app/addCustomer.html.twig', [

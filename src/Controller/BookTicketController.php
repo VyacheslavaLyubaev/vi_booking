@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\Type\BookTicketType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,12 @@ class BookTicketController extends AbstractController
      */
     public function bookTickerAction(Request $request): Response
     {
-        echo "123";
+        $form = $this->createForm(BookTicketType::class, [
+            'action' => $this->generateUrl('app.addCustomer')
+        ]);
+        return $this->render('app/bookTicket.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 }

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+    <h1>Забронировать</h1>
+    {{ form(form) }}
+    <div>
+        <a href="{{ path('app.addCustomer') }}">Добавить нового пассажира в систему +</a>
+    </div>
+
+{% endblock %}
