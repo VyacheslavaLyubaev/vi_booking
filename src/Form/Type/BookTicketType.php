@@ -2,27 +2,36 @@
 
 namespace App\Form\Type;
 
-use App\DTO\CustomerDTO;
+use App\DTO\TicketDTO;
 use App\Entity\Customer;
+use App\Entity\Flight;
+use App\Repository\FlightRepository;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookTicketType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date', DateType::class, [
+            ->add('flightDate', DateType::class, [
                 'label'  => 'Дата',
                 'widget' => 'single_text'
             ])
-            ->add('customer1', EntityType::class, [
-                'class' => Customer::class,
-                'label' => 'Рейс'
+            ->add('flight', EntityType::class,[
+                'class' => Flight::class,
+                'choice_label' => function ($flight)
+                {
+                    return $flight->getFlightData();
+                }
             ])
             ->add('customer', EntityType::class, [
                 'class' => Customer::class,
@@ -31,5 +40,12 @@ class BookTicketType extends AbstractType
             ->add('save', SubmitType::class, ['label' => 'Добавить']);
     }
 
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => TicketDTO::class
+        ])
+        ->setRequired('activeFlight');
+    }
 
 }

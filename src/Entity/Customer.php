@@ -123,7 +123,7 @@ class Customer
     }
     public function __toString()
     {
-        $fio = $this->f.' '.$this->i.' '.$this->o.' ('.$this->getPs().' '.$this->getPn().')';
+        $fio = $this->getF().' '.$this->getI().' '.$this->getO().' ('.$this->getPs().' '.$this->getPn().')';
         return $fio;
     }
 }

@@ -1,0 +1,5 @@
+#!/bin/bash
+. .env
+sudo docker exec -ti -u `id -u` vi_booking_php /code/bin/console "$@"
+
+
