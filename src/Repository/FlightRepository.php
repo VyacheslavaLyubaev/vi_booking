@@ -21,13 +21,5 @@ class FlightRepository extends ServiceEntityRepository
     }
 
 
-    public function test()
-    {
-       $em = $this->getEntityManager();
-       $qb = $em->createQueryBuilder('f')
-           ->select('f.id');
-
-       return $qb;
-    }
 
 }

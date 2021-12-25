@@ -37,12 +37,19 @@ class Ticket
      */
     private string $status = 'Забронирован';
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
+
     public function __construct(Customer $customer, Flight $flight, DateTime $flight_date)
     {
         $this->customer = $customer;
         $this->flight = $flight;
         $this->flight_date = $flight_date;
     }
+
     public static function createFromDto(TicketDTO $dto): self
     {
         return new self($dto->getCustomer(), $dto->getFlight(), $dto->getFlightDate());
@@ -93,6 +100,17 @@ class Ticket
         return $this->id;
     }
 
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $Price): self
+    {
+        $this->price = $Price;
+
+        return $this;
+    }
 
 
 }

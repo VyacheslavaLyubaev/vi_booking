@@ -1,11 +1,48 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block title %}Добавление пассажира{% endblock %}
 {% block body %}
-<h1>Пассажир</h1>
-{{ form(form) }}
+
+    {{ form_start(form) }}
+    <h1 class="text-centre">Пассажир</h1>
+    <div class="row g-3 align-item-center">
+        <div class="col">
+            {{ form_row(form.f) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.i) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.o) }}
+        </div>
+        <div class="col">
+            <p class="vertical-align">
+                Пасспорт
+            </p>
+        </div>
+        <div class="col">
+            {{ form_row(form.ps) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.pn) }}
+        </div>
+    </div>
+    <div class="row g-3 text-centre">
+        <div class="col">
+            {{ form_row(form.save) }}
+        </div>
+    </div>
 
 
 
+    {{ form_end(form) }}
+
+
+    <style>
+        #add_customer_save {
+            width: 250px;
+        }
+    </style>
 
 
 {% endblock %}

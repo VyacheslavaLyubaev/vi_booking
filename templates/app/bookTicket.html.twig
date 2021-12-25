@@ -1,10 +1,39 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block title %}Бронирование билета{% endblock %}
 {% block body %}
-    <h1>Забронировать</h1>
-    {{ form(form) }}
+    {{ form_start(form) }}
+    <h1 class="text-centre">Бронирование билета</h1>
+    <div class="row g-3 align-item-center">
+        <div class="col-md-6">
+            {{ form_row(form.flight) }}
+        </div>
+        <div class="col-md-2">
+            {{ form_row(form.flightDate) }}
+        </div>
+    </div>
+    <div class="row g-3 align-item-center">
+        <div class="col-md-6">
+            {{ form_row(form.customer) }}
+        </div>
+    </div>
     <div>
         <a href="{{ path('app.addCustomer') }}">Добавить нового пассажира в систему +</a>
     </div>
+    <div class="row g-3 text-centre">
+        <div class="col">
+            {{ form_row(form.save) }}
+        </div>
+    </div>
+
+
+    {{ form_end(form) }}
+
+    <style>
+        #book_ticket_save {
+            width: 250px;
+        }
+    </style>
 
 {% endblock %}
+

@@ -5,11 +5,8 @@ namespace App\Form\Type;
 use App\DTO\TicketDTO;
 use App\Entity\Customer;
 use App\Entity\Flight;
-use App\Repository\FlightRepository;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,6 +24,7 @@ class BookTicketType extends AbstractType
                 'widget' => 'single_text'
             ])
             ->add('flight', EntityType::class,[
+                'label' => 'Рейс',
                 'class' => Flight::class,
                 'choice_label' => function ($flight)
                 {
@@ -37,7 +35,7 @@ class BookTicketType extends AbstractType
                 'class' => Customer::class,
                 'label' => 'Пассажир'
             ])
-            ->add('save', SubmitType::class, ['label' => 'Добавить']);
+            ->add('save', SubmitType::class, ['label' => 'Купить']);
     }
 
     public function configureOptions(OptionsResolver $resolver)

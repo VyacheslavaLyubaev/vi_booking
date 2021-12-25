@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}Билет{% endblock %}
+{% block body %}
+    <h1 class="text-centre">Билет успешно забронирован</h1>
+    <div class="fw-bold fs-5">
+        <table>
+            <thead>
+            <tbody>
+            <tr>
+                <td>{{ customer }}</td>
+            </tr>
+            <tr>
+                <td style="text-decoration:underline ">Билет:</td>
+            </tr>
+            <tr>
+                <td>{{ flight }}</td>
+            </tr>
+            <tr>
+                <td>{{ flightDate.format('d.m.Y') }}</td>
+            </tr>
+            <tr>
+                <td>Цена {{ price }} рублей</td>
+            </tr>
+            <tr>
+                <td>{{ status }}</td>
+            </tr>
+            </tbody>
+            </thead>
+        </table>
+    </div>
+
+{% endblock %}
